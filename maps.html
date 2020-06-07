@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <?PHP 
+        include "../core/utilisateurC.php";
+        $utilisateurCvar =new utilisateurC();
+        $listeUtilisateurs=$utilisateurCvar->afficherUtilisateurs();
+        ?>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">Start Bootstrap</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../core/logout.php">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Gestions des avis
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="../views/tables.php">Afficahge des avis</a><a class="nav-link" style="font-size: 13px;" href="../views/index.html">Ajouts des avis</a></nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Gestions des utilisateurs
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="../views/tables2.php">Afficahge des utilisateurs</a><a class="nav-link" style="font-size: 13px;" href="../views/index2.html">Ajouts des utilisateurs</a></nav>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                 
+
+<center>
+	<div class="map-main-page">  	
+    	<h2>Maps</h2>
+    	    <div class="map-grid">
+			  <div class="map-system">
+		 		<div class="col-md-6 map-1">
+			    <div class="span11">
+			      <div id="map3"></div>
+			    </div>
+			
+				</div>
+				 <script type="text/javascript">
+			    var map;
+			    $(document).ready(function(){
+			      map = new GMaps({
+			        el: '#map3',
+			        lat: -12.043333,
+			        lng: -77.028333,
+			        mapTypeControlOptions: {
+			          mapTypeIds : ["hybrid", "roadmap", "satellite", "terrain", "osm", "cloudmade"]
+			        }
+			      });
+			      map.addMapType("osm", {
+			        getTileUrl: function(coord, zoom) {
+			          return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+			        },
+			        tileSize: new google.maps.Size(256, 256),
+			        name: "OpenStreetMap",
+			        maxZoom: 18
+			      });
+			      map.addMapType("cloudmade", {
+			        getTileUrl: function(coord, zoom) {
+			          return "http://b.tile.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/1/256/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+			        },
+			        tileSize: new google.maps.Size(256, 256),
+			        name: "CloudMade",
+			        maxZoom: 18
+			      });
+			      map.setMapTypeId("osm");
+			    });
+			  </script>
+			  	<div class="col-md-6 map-2">
+					
+			     <div class="span11">
+			      <div id="map"></div>
+			    </div>
+				   <script type="text/javascript">
+			    var map;
+			
+			    var getTile = function(coord, zoom, ownerDocument) {
+			      var div = ownerDocument.createElement('div');
+			      div.innerHTML = coord;
+			      div.style.width = this.tileSize.width + 'px';
+			      div.style.height = this.tileSize.height + 'px';
+			      div.style.background = 'rgba(250, 250, 250, 0.55)';
+			      div.style.fontFamily = 'Monaco, Andale Mono, Courier New, monospace';
+			      div.style.fontSize = '10';
+			      div.style.fontWeight = 'bolder';
+			      div.style.border = 'dotted 1px #aaa';
+			      div.style.textAlign = 'center';
+			      div.style.lineHeight = this.tileSize.height + 'px';
+			      return div;
+			    };
+			
+			    $(document).ready(function(){
+			      map = new GMaps({
+			        el: '#map',
+			        lat: -12.043333,
+			        lng: -77.028333
+			      });
+			      map.addOverlayMapType({
+			        index: 0,
+			        tileSize: new google.maps.Size(256, 256),
+			        getTile: getTile
+			      });
+			    });
+			   </script>
+					</div>
+			 		<div class="clearfix"> </div>
+			 		
+				</div>
+		 <div class="map-system">
+	 		<div class="col-md-6 map-1">
+	    <div class="span11">
+	      <div id="map2"></div>
+		</div>
+		 <script type="text/javascript">
+	    var map;
+	    $(document).ready(function(){
+	      map = new GMaps({
+	        el: '#map2',
+	        lat: -12.043333,
+	        lng: -77.028333,
+	        zoomControl : true,
+	        zoomControlOpt: {
+	            style : 'SMALL',
+	            position: 'TOP_LEFT'
+	        },
+	        panControl : false,
+	        streetViewControl : false,
+	        mapTypeControl: false,
+	        overviewMapControl: false
+	      });
+	    });
+	  </script>
+	 		</div>
+	 		<div class="col-md-6 map-2">
+			
+	      <div class="span11">
+	        <div id="map1"></div>
+	      
+		  </div>
+		    <script>
+	        $(function () {
+	          var map = new GMaps({
+	          el: "#map1",
+	          lat: 41.895465,
+	          lng: 12.482324,
+	          zoom: 5, 
+	          zoomControl : true,
+	          zoomControlOpt: {
+	            style : "SMALL",
+	            position: "TOP_LEFT"
+	          },
+	          panControl : true,
+	          streetViewControl : false,
+	          mapTypeControl: false,
+	          overviewMapControl: false
+	        });
+	        
+	        var styles = [
+	            {
+	              stylers: [
+	                { hue: "#00ffe6" },
+	                { saturation: -20 }
+	              ]
+	            }, {
+	                featureType: "road",
+	                elementType: "geometry",
+	                stylers: [
+	                    { lightness: 100 },
+	                    { visibility: "simplified" }
+	              ]
+	            }, {
+	                featureType: "road",
+	                elementType: "labels",
+	                stylers: [
+	                    { visibility: "off" }
+	              ]
+	            }
+	        ];
+	        
+	        map.addStyle({
+	            styledMapName:"Styled Map",
+	            styles: styles,
+	            mapTypeId: "map_style"  
+	        });
+	        
+	        map.setStyle("map_style");
+	      });
+	    </script>
+		
+			</div>
+	 		<div class="clearfix"> </div> 		
+		</div>
+	</div>
+ 	<!--//grid-->
+       </div>  	
+
+</div>
+
+<script>
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }               
+                toggle = !toggle;
+            });
+</script>
+<script src="js/jquery.nicescroll.js"></script>
+		<script src="js/scripts.js"></script>
+		<!--//scrolling js-->
+<script src="js/bootstrap.js"> </script>
+
+</body>
+</html>        
+
+     
+                              
