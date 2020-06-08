@@ -11,7 +11,8 @@ if (isset($_POST['id']) and isset($_POST['remarque']) and isset($_POST['note']) 
     $avisvar = new avis($id,$remarque,$note);
     $avisCvar= new avisC() ;
     $avisCvar->ajouterAvis($avisvar);
-    header('Location: tables.php');
+    echo"<script language =\"javascript\">alert(\"merci pour votre temps\");document.location.href='../front/contact.php';</script>";
+
 }
     else{
         echo "verifier les champs";
